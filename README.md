@@ -19,9 +19,25 @@ Design and implement a concurrent linked-list that can help the Minotaur’s 4 s
 
 ### Strategy:
 
+For this problem, I decided to have each servant take a present and then write a thank you note in a loop, all while checking if the minotaur made a request. The concurrent linked list I chose to use is the optimistic approach, as it is very efficient and thought it would work well for this assignment. The items get removed from the bag and added to the list, and the thank you notes are written when we remove an gift from the front of the list. Finally, we use the contains method in the list to satisfy the requests the minotaur makes to see whether a particular gift is in the linked list or not.
+
+The reason why someone could end up with more gifts than thank you notes is if they don't write a validation step in the linked list to validate that we succeeded in adding/removing the gift to/from the linkedlist.
+
 ### Correctness, Efficiency and Evaluation:
 
+The program is verified to write 500,000 thank you notes and to add 500,000 gifts into the linked list, all while checking whether a gift is in the list at the minotaurs request. Overall I'm happy with the implementation as I believe it is fairly clean and concise codewise as well as efficient.
+
+The big o runtime of this program is O(N), with N being the number of presents which in this case is 500,000. 
+
 ### How to run
+
+To run this program:
+  - clone the repository
+  - open your terminal
+  - cd into the Assignment3 folder
+  - cd into the Program1 folder
+  - type javac pa3cop4520p1.java
+  - type java pa3cop4520p1
 
 ## Problem 2: Atmospheric Temperature Reading Module (50 points)
 
@@ -31,6 +47,20 @@ Design and implement a solution using 8 threads that will offer a solution for t
 
 ### Strategy:
 
+For this program I decided to use PriorityBlockingQueue which is a heap library that is thread-safe to handle the highest and lowest temperatures. What I do is I use a maxHeap to hold the 5 lowest temperatures by adding to the heap until we reach size 6 and then remove the head (which is the highest temperature in that heap). To get the highest temperatures I use the same approach but with a minHeap instead. This approach saves memory as we only ever hold up to 6 temperatures at a time for each, and it is efficient since all we ever have to do is remove the head of a really small heap, or add to a really small heap. To get the highest temperature difference at an interval I use a concurrent optimistic linked list that keeps all the highest and lowest temperatures at each minute. Then I do a for loop where I go through all the possible intervals and get the highest difference of temperatures in each one. I store the interval with the highest difference and print that one after we iterate through all of the possible intervals.
+
 ### Correctness, Efficiency and Evaluation:
 
+This program is thread safe as I use both a concurrent linked list and a thread-safe heap. The efficiency of the program was taken into account by using the minHeap and maxHeap which end up being very efficent, as well as an optimistic linked list. 
+
+The interval is found with a runtime O(N), N being the number of reports we have to make. The highest and lowest temperatures are Nlog(N), again with N being the number of reports we have to make. This is because adding to a heap and removing from a heap can be Log(N). Therefore the overall runtime of the program is Nlog(N)
+
 ### How to run
+
+To run this program:
+  - clone the repository
+  - open your terminal
+  - cd into the Assignment3 folder
+  - cd into the Program2 folder
+  - type javac pa3cop4520p2.java
+  - type java pa3cop4520p2
