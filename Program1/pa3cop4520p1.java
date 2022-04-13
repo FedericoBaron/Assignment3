@@ -56,8 +56,6 @@ public class pa3cop4520p1 {
             System.out.println(e);
         }
 
-        // System.out.println("bag: "+ bag.size());
-        // System.out.println("chain: " + chain.size.get());
         long timeEnd = System.currentTimeMillis();
         System.out.println("We wrote " + count.get() + " thank you notes");
         System.out.println("We added " + count2.get() + " items from the bag to the chain");
@@ -79,12 +77,6 @@ public class pa3cop4520p1 {
                 itemTag = minatourRequest.getAndSet(-1);
                 if (itemTag != -1) {
                     lookup(itemTag);
-                    // if(lookup(itemTag)){
-                    //     // System.out.println("The chain has item " + itemTag + ".");
-                    // }
-                    // else{
-                    //     // System.out.println("The chain does not have item " + itemTag + ".");
-                    // }
                 }
 
                 // add to chain
@@ -94,7 +86,6 @@ public class pa3cop4520p1 {
 
                 // write thank you note
                 if (chain.size.get() != 2) {
-                    // System.out.println("bag size is: " + bag.size());
                     // WE HAVE A PROBLEM WITH REPEAT THANK YOU!
                     writeThankYou(chain.head.next.key);
                 }
@@ -118,7 +109,6 @@ public class pa3cop4520p1 {
             
             if(chain.remove(item)){
                 count.getAndIncrement();
-                // System.out.println("Thank you guest " + item);
             }
         }
     }
@@ -128,14 +118,7 @@ public class pa3cop4520p1 {
         public void run() {
             
             while(!service.isShutdown()){
-                // try {
-                //     Thread.sleep(1);
-                // } catch (InterruptedException e) {
-                //     e.printStackTrace();
-                // } finally {
-                //     if(minatourRequest.get() == -1)
-                        minatourRequest.set(ran.nextInt(NUM_PRESENTS));
-                // }
+                minatourRequest.set(ran.nextInt(NUM_PRESENTS));
             }
         }   
     }
