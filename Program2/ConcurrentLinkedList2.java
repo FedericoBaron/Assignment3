@@ -2,6 +2,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+// the textbook The Art of Multiprocessor Programming was used as reference for this linked list
 public class ConcurrentLinkedList2 {
 
     public Node head;
